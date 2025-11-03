@@ -1,49 +1,47 @@
-"use client"
+"use client";
 
-import type React from "react"
-
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
+import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export default function SettingsLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const navItems = [
     { href: "/settings/profile", label: "Profile" },
     { href: "/settings/account", label: "Account" },
-  ]
+  ];
+
+  const currentNavItem = navItems.find((item) => pathname.startsWith(item.href));
 
   return (
-    <div className="p-6 max-w-6xl">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div className="min-h-screen bg-background w-full">
+      <div className="px-8 py-10 grid grid-cols-1 md:grid-cols-4 gap-8 w-full">
         {/* Sidebar */}
-        <div className="md:col-span-1">
-          <nav className="space-y-2">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "block px-4 py-2 rounded-lg transition",
-                  pathname === item.href
-                    ? "bg-primary text-primary-foreground font-medium"
-                    : "text-foreground hover:bg-secondary",
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+        <aside className="md:col-span-1">
+          {currentNavItem && (
+            <Link
+              href={currentNavItem.href}
+              className={cn(
+                "block px-5 py-2.5 rounded-lg font-medium text-center transition-colors",
+                "bg-blue-500 text-white shadow-sm"
+              )}
+            >
+              {currentNavItem.label}
+            </Link>
+          )}
+        </aside>
 
         {/* Content */}
-        <div className="md:col-span-3">{children}</div>
+        <main className="md:col-span-3 bg-card border border-border rounded-2xl shadow-sm p-8">
+          {children}
+        </main>
       </div>
     </div>
-  )
+  );
 }

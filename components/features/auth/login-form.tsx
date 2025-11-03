@@ -45,7 +45,7 @@ export function LoginForm() {
           placeholder="you@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          icon={<Mail className="w-5 h-5" />}
+          
         />
       </div>
 
@@ -56,7 +56,7 @@ export function LoginForm() {
           placeholder="Enter your password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          icon={<Lock className="w-5 h-5" />}
+        
         />
         <button
           type="button"
