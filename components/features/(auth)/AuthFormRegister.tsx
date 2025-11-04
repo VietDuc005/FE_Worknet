@@ -1,9 +1,14 @@
 "use client";
+import { useState } from "react";
 import InputField from "./InputField";
 import PasswordField from "./PasswordField";
 import { Mail, User } from "lucide-react";
 
 export default function AuthFormRegister({ form, handleChange, isLoading }: any) {
+  // ✅ Hai state riêng cho 2 ô mật khẩu
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+
   return (
     <>
       <InputField
@@ -14,6 +19,7 @@ export default function AuthFormRegister({ form, handleChange, isLoading }: any)
         placeholder="Nguyễn Văn A"
         required
       />
+
       <InputField
         label="Email"
         icon={<Mail className="w-4 h-4 text-gray-400" />}
@@ -23,25 +29,27 @@ export default function AuthFormRegister({ form, handleChange, isLoading }: any)
         placeholder="user@gmail.com"
         required
       />
+
       <PasswordField
         label="Mật khẩu"
         value={form.password}
-        show={false}
-        toggle={() => {}}
+        show={showPassword}
+        toggle={() => setShowPassword((prev) => !prev)}
         onChange={handleChange("password")}
       />
+
       <PasswordField
         label="Xác nhận mật khẩu"
         value={form.confirmPassword}
-        show={false}
-        toggle={() => {}}
+        show={showConfirm}
+        toggle={() => setShowConfirm((prev) => !prev)}
         onChange={handleChange("confirmPassword")}
       />
 
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full py-2.5 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-cyan-500 hover:opacity-90 transition disabled:opacity-60"
+        className="w-full py-2.5 mt-2 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-cyan-500 hover:opacity-90 transition disabled:opacity-60"
       >
         {isLoading ? "Đang xử lý..." : "Tạo Tài Khoản"}
       </button>
