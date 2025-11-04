@@ -36,7 +36,7 @@ export default function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClos
         if (email === "admin@worknet.com" && password === "12345678") {
           router.push("/admin/dashboard")
         } else if (email === "user@worknet.com" && password === "12345678") {
-          router.push("/use/dashboard")
+          router.push("/user/dashboard")
         } else if (email === "workspace@worknet.com" && password === "12345678") {
           router.push("/workspace/dashboard")
         } else {
