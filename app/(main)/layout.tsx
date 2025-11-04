@@ -12,7 +12,6 @@ export default function DashboardLayout({
 }) {
   const [collapsed, setCollapsed] = useState(false);
   const { theme } = useTheme();
-
   const isDark = theme === "dark";
 
   return (
@@ -36,7 +35,7 @@ export default function DashboardLayout({
 
         {/* Nội dung chính */}
         <main
-          className={`flex-1 overflow-y-auto p-6 pt-20 transition-colors duration-300 
+          className={`flex-1 overflow-y-auto px-6 pb-6 pt-[72px] transition-colors duration-300 
           ${isDark ? "bg-gray-900 text-gray-100" : "bg-gray-50 text-gray-900"}`}
         >
           {children}

@@ -1,27 +1,38 @@
 "use client";
 
+import CompanyList from "@/components/features/company/CompanyList";
+import CompanyEditForm from "@/components/features/company/CompanyEditForm";
+import { useState } from "react";
+import { Building2 } from "lucide-react";
+
 export default function CompanyPage() {
-  const companies = [
-    { id: 1, name: "CMC Global", members: 120 },
-    { id: 2, name: "FPT Software", members: 300 },
-  ];
+  const [selectedId, setSelectedId] = useState<number | null>(null);
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center">
-        <h2 className="text-xl font-semibold">Danh sách Công ty</h2>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium">
-          + Thêm Công ty
-        </button>
+    <div className="h-full flex flex-col bg-background">
+      {/* Header section */}
+      <div className="flex items-center gap-3 pb-3 border-b border-border">
+        <Building2 className="w-6 h-6 text-blue-500" />
+        <div>
+          <h1 className="text-2xl font-bold text-foreground leading-tight">
+            Quản lý Công ty
+          </h1>
+          <p className="text-sm text-muted-foreground mt-0.5">
+            Quản lý thông tin, chỉnh sửa và thêm mới công ty của bạn.
+          </p>
+        </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
-        {companies.map((c) => (
-          <div key={c.id} className="border rounded-lg p-4 bg-card hover:shadow transition">
-            <h3 className="font-medium">{c.name}</h3>
-            <p className="text-sm text-muted-foreground">{c.members} thành viên</p>
-          </div>
-        ))}
+      {/* Main content — dính sát header */}
+      <div className="flex-1 bg-card border-x border-b border-border shadow-sm px-5 py-4 rounded-b-lg">
+        {!selectedId ? (
+          <CompanyList />
+        ) : (
+          <CompanyEditForm
+            congTyId={selectedId}
+            onSuccess={() => setSelectedId(null)}
+          />
+        )}
       </div>
     </div>
   );
