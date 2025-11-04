@@ -1,9 +1,18 @@
 "use client";
+import { useState } from "react";
 import InputField from "./InputField";
 import PasswordField from "./PasswordField";
 import { Mail } from "lucide-react";
 
-export default function AuthFormLogin({ form, handleChange, isLoading, setTab }: any) {
+export default function AuthFormLogin({
+  form,
+  handleChange,
+  isLoading,
+  setTab,
+}: any) {
+  // ✅ State riêng để bật/tắt hiển thị mật khẩu
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <>
       <InputField
@@ -15,11 +24,12 @@ export default function AuthFormLogin({ form, handleChange, isLoading, setTab }:
         placeholder="user@gmail.com"
         required
       />
+
       <PasswordField
         label="Mật khẩu"
         value={form.password}
-        show={false}
-        toggle={() => {}}
+        show={showPassword}
+        toggle={() => setShowPassword((prev) => !prev)} // ✅ Toggle thật
         onChange={handleChange("password")}
       />
 
