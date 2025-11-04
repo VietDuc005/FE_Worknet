@@ -42,10 +42,11 @@ export default function Sidebar({
       { href: "/admin/payment", label: "Payment", icon: <CreditCard className="w-5 h-5" /> },
     ],
     use: [
-      { href: "/use/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
+      { href: "/user/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
       { href: "/use/workspaces", label: "Workspaces", icon: <Briefcase className="w-5 h-5" /> },
       { href: "/use/projects", label: "Project", icon: <Building2 className="w-5 h-5" /> },
       { href: "/use/member", label: "Member", icon: <Users className="w-5 h-5" /> },
+      { href: "/user/choose-plan", label: "Premium", icon: <Users className="w-5 h-5" /> },
     ],
     workspace: [
       { href: "/workspace/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
