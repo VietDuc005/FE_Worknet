@@ -1,31 +1,40 @@
 "use client";
 
-export default function MemberPage() {
-  const members = [
-    { id: 1, name: "Nguyễn Văn A", role: "Admin" },
-    { id: 2, name: "Trần Thị B", role: "User" },
-  ];
+import { Users } from "lucide-react";
+import InviteMemberForm from "@/components/features/workspace/InviteMemberForm";
+
+export default function WorkspaceMemberPage() {
+  const congTyId = 1; // sau này truyền động qua context / store
+  const workspaceId = 1;
 
   return (
-    <div className="space-y-4">
-      <h2 className="text-xl font-semibold">Danh sách Thành viên</h2>
-      <button className="btn-primary mb-4">+ Thêm thành viên</button>
-      <table className="w-full border-collapse border border-border">
-        <thead>
-          <tr className="bg-secondary">
-            <th className="border p-2">Tên</th>
-            <th className="border p-2">Vai trò</th>
-          </tr>
-        </thead>
-        <tbody>
-          {members.map((m) => (
-            <tr key={m.id}>
-              <td className="border p-2">{m.name}</td>
-              <td className="border p-2">{m.role}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="flex flex-col h-full bg-background">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-3">
+        <Users className="w-6 h-6 text-blue-500" />
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">
+            Mời thành viên vào Workspace
+          </h1>
+          <p className="text-sm text-muted-foreground">
+            Gửi lời mời đến email thành viên để tham gia không gian làm việc.
+          </p>
+        </div>
+      </div>
+
+      {/* Main box */}
+      <div className="bg-card rounded-xl border border-border shadow-sm p-6 max-w-lg space-y-6">
+        <h2 className="text-lg font-semibold text-foreground">
+          Gửi lời mời tham gia
+        </h2>
+        <InviteMemberForm
+          congTyId={congTyId}
+          workspaceId={workspaceId}
+          onSuccess={() => {
+            alert("🎉 Mời thành viên thành công!");
+          }}
+        />
+      </div>
     </div>
   );
 }
