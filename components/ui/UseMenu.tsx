@@ -44,7 +44,7 @@ export default function UserMenu() {
     setOpen(false);
     // Ở đây bạn có thể thêm logic clear token / localStorage nếu cần
     localStorage.removeItem("authToken");
-    router.push("/login");
+    router.push("/");
   };
 
    const isProfilePage = pathname === "/settings/profile";
