@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import  Sidebar  from "@/components/layout/sidebar";
+import  Sidebar  from "@/components/layout-workspace/sidebar";
 import Header from "@/components/layout/header";
 
-export default function MainLayout({
+export default function WorkspaceLayout({
   children,
 }: {
   children: React.ReactNode;

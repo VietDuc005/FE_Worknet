@@ -22,7 +22,7 @@ export default function LoginPage() {
     setTimeout(() => {
       showToast("Google OAuth - Chuyển hướng đến:", "success");
       setIsLoading(false)
-      router.push("/dashboard");
+      router.push("/choose-plan");
     }, 500)
   }
 
@@ -32,12 +32,21 @@ export default function LoginPage() {
     setTimeout(() => {
       showToast(`Đăng nhập với email: ${email}`, "success");
       setIsLoading(false)
-      router.push("/dashboard");
+      router.push("/choose-plan");
     }, 500)
   }
 
   return (
     <div className="w-full max-w-md">
+      
+ {/* Nút quay về trang chính */}
+          <button
+            onClick={() => router.push("/")}
+            className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg text-sm font-medium"
+          >
+            ← Quay về Trang chủ
+          </button>
+
       {/* Header */}
       <div className="mb-8 text-center">
         <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 text-white font-bold text-lg mb-4">

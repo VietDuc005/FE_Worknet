@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { ArrowRight, Zap, Users, TrendingUp, Lock } from "lucide-react"
+import PremiumPlans from "@/components/ui/premium"
 
 export default function LandingPage() {
   return (
@@ -120,7 +121,7 @@ export default function LandingPage() {
           </Link>
         </div>
       </section>
-
+            <PremiumPlans />
       {/* Footer */}
       <footer className="bg-foreground text-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 mb-8">

@@ -25,10 +25,10 @@ export default function Sidebar() {
 
   // 🧭 Menu chính
   const navItems = [
-    { href: "/use/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
-    { href: "/use/workspaces", label: "Workspaces", icon: <Briefcase className="w-5 h-5" /> },//drop down 
-   {href: "/use/project" , label : "Project", icon: <Building2 className="w-5 h-5" />},
-   {href: "/use/member" , label : "Member", icon: <Building2 className="w-5 h-5" />},
+    { href: "/workspace/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
+    { href: "/workspace/workspaces", label: "Workspaces", icon: <Briefcase className="w-5 h-5" /> },//drop down 
+   {href: "/workspace/project" , label : "Project", icon: <Building2 className="w-5 h-5" />},
+   {href: "/workspace/member" , label : "Member", icon: <Building2 className="w-5 h-5" />},
     
   ];
 
@@ -88,4 +88,4 @@ export default function Sidebar() {
     </aside>
   );
 }
-// ddaay la trang admin cong ty
+// ddaay la trang quan li wworkspace

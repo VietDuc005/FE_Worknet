@@ -25,15 +25,15 @@ export default function Sidebar() {
 
   // 🧭 Menu chính
   const navItems = [
-    { href: "/use/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
-    { href: "/use/workspaces", label: "Workspaces", icon: <Briefcase className="w-5 h-5" /> },//drop down 
-   {href: "/use/project" , label : "Project", icon: <Building2 className="w-5 h-5" />},
-   {href: "/use/member" , label : "Member", icon: <Building2 className="w-5 h-5" />},
+    { href: "/admin/dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-5 h-5" /> },
+    {href: "/admin/company" , label : "Company", icon: <Building2 className="w-5 h-5" />},
+    { href: "/admin/member", label: "Member", icon: <LayoutDashboard className="w-5 h-5" /> },
+    { href: "/admin/workspaces", label: "Workspaces", icon: <Briefcase className="w-5 h-5" /> },//drop down 
+   {href: "/admin/payment" , label : "Payment", icon: <Building2 className="w-5 h-5" />},
     
   ];
 
-
-
+ 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     router.push("/login");
