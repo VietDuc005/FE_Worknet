@@ -1,11 +1,13 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { X, Mail, User, Lock } from "lucide-react"
 import InputField from "./InputField"
 import PasswordField from "./PasswordField"
 
 export default function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const router = useRouter()
   const [tab, setTab] = useState<"login" | "register" | "forgot">("login")
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
@@ -25,20 +27,35 @@ export default function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClos
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
+
     setTimeout(() => {
-      if (tab === "login") alert(`Đăng nhập thành công: ${form.email}`)
-      else if (tab === "register") alert(`Tạo tài khoản: ${form.name}`)
-      else if (tab === "forgot") {
+      if (tab === "login") {
+        const email = form.email.trim()
+        const password = form.password.trim()
+
+        if (email === "admin@worknet.com" && password === "12345678") {
+          router.push("/admin/dashboard")
+        } else if (email === "user@worknet.com" && password === "12345678") {
+          router.push("/use/dashboard")
+        } else if (email === "workspace@worknet.com" && password === "12345678") {
+          router.push("/workspace/dashboard")
+        } else {
+          alert("❌ Email hoặc mật khẩu không chính xác!")
+        }
+      } else if (tab === "register") {
+        alert(`✅ Tài khoản mới đã được tạo: ${form.name}`)
+      } else if (tab === "forgot") {
         if (!isCodeSent) {
           setIsCodeSent(true)
-          alert("Mã xác minh đã gửi đến email của bạn.")
+          alert("📩 Mã xác minh đã được gửi đến email của bạn.")
         } else {
-          alert("Mật khẩu mới đã được đặt lại.")
+          alert("🔑 Mật khẩu mới đã được đặt lại.")
           setTab("login")
         }
       }
+
       setIsLoading(false)
-    }, 1000)
+    }, 500)
   }
 
   const handleChange =
@@ -55,7 +72,7 @@ export default function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClos
         onClick={(e) => e.stopPropagation()}
         className="relative w-full max-w-sm bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 transition-all"
       >
-        {/* Đóng */}
+        {/* Nút đóng */}
         <button
           onClick={onClose}
           className="absolute top-3 right-3 p-2 rounded-full hover:bg-gray-100 text-gray-500"
@@ -124,7 +141,7 @@ export default function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClos
               type="email"
               value={form.email}
               onChange={handleChange("email")}
-              placeholder="you@example.com"
+              placeholder="admin@worknet.com"
               required
             />
 
@@ -148,28 +165,24 @@ export default function AuthModal({ isOpen, onClose }: { isOpen: boolean; onClos
               />
             )}
 
-            {tab === "forgot" && (
+            {tab === "forgot" && isCodeSent && (
               <>
-                {isCodeSent ? (
-                  <>
-                    <InputField
-                      label="Mã xác minh"
-                      icon={<Lock className="w-4 h-4 text-gray-400" />}
-                      type="text"
-                      value={form.resetCode}
-                      onChange={handleChange("resetCode")}
-                      placeholder="Nhập mã gồm 6 ký tự"
-                      required
-                    />
-                    <PasswordField
-                      label="Mật khẩu mới"
-                      value={form.newPassword}
-                      show={showPassword}
-                      toggle={() => setShowPassword(!showPassword)}
-                      onChange={handleChange("newPassword")}
-                    />
-                  </>
-                ) : null}
+                <InputField
+                  label="Mã xác minh"
+                  icon={<Lock className="w-4 h-4 text-gray-400" />}
+                  type="text"
+                  value={form.resetCode}
+                  onChange={handleChange("resetCode")}
+                  placeholder="Nhập mã gồm 6 ký tự"
+                  required
+                />
+                <PasswordField
+                  label="Mật khẩu mới"
+                  value={form.newPassword}
+                  show={showPassword}
+                  toggle={() => setShowPassword(!showPassword)}
+                  onChange={handleChange("newPassword")}
+                />
               </>
             )}
 
